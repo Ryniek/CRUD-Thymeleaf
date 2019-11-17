@@ -13,8 +13,9 @@ public class BlogPost {
     private String title;
     private String content;
     @Column(name = "time_post")
-    private LocalDateTime timeOfPost;
     private String tags;
+    private LocalDateTime timeOfPost;
+    private PostCategory category;
 
     public BlogPost() {
     }
@@ -23,6 +24,7 @@ public class BlogPost {
         this.title = title;
         this.content = content;
         this.tags = tags;
+        timeOfPost = LocalDateTime.now();
     }
 
     public Long getId() {

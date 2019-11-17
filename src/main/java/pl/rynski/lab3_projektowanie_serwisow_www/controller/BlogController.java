@@ -30,9 +30,13 @@ public class BlogController {
     public String addPost(@RequestParam String title,
                           @RequestParam String content,
                           @RequestParam String tags) {
-        BlogPost blogPost = new BlogPost(title, content, tags);
-        blogPost.setTimeOfPost(LocalDateTime.now());
-        System.out.println(blogPost);
+        blogService.addPost(new BlogPost(title, content, tags));
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        blogService.removePost(id+1);
         return "redirect:/";
     }
 }
