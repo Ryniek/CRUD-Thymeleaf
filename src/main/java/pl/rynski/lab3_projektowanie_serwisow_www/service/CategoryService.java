@@ -23,4 +23,19 @@ public class CategoryService {
     public List<CategoryOfPost> getCategories() {
         return categoryRepository.findAll();
     }
+
+    public CategoryOfPost getCategoryByName(String name) {
+        return categoryRepository.findByName(name);
+    }
+
+    public boolean addCategory(CategoryOfPost category) {
+        CategoryOfPost add = categoryRepository.save(category);
+        if(add != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

@@ -32,9 +32,14 @@ public class BlogController {
     @PostMapping("/add")
     public String addPost(@RequestParam String title,
                           @RequestParam String content,
-                          @RequestParam String categoryy) {
-        System.out.println(categoryy);
-        postService.addPost(new BlogPost(title, content));
+                          @RequestParam String category) {
+        postService.addPost(new BlogPost(title, content, categoryService.getCategoryByName(category)));
+        return "redirect:/";
+    }
+
+    @PostMapping("/addCategory")
+    public String addCategory(@RequestParam String name) {
+        categoryService.addCategory(new CategoryOfPost(name));
         return "redirect:/";
     }
 

@@ -27,6 +27,13 @@ public class BlogPost {
         timeOfPost = LocalDateTime.now();
     }
 
+    public BlogPost(String title, String content, CategoryOfPost category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        timeOfPost = LocalDateTime.now();
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,6 +64,14 @@ public class BlogPost {
 
     public void setTimeOfPost(LocalDateTime timeOfPost) {
         this.timeOfPost = timeOfPost;
+    }
+
+    public CategoryOfPost getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryOfPost category) {
+        this.category = category;
     }
 
     @Override

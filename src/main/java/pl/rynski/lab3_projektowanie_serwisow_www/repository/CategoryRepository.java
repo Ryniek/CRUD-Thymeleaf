@@ -6,4 +6,6 @@ import pl.rynski.lab3_projektowanie_serwisow_www.model.CategoryOfPost;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryOfPost, Long> {
+
+    CategoryOfPost findByName(String name);
 }

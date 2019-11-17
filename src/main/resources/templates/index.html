@@ -5,6 +5,7 @@
     <title>HomePage</title>
 </head>
 <body>
+    <h2>All posts</h2>
     <table>
         <tr>
             <th>Title</th>
@@ -20,15 +21,23 @@
             <td>Update</td>
         </tr>
     </table>
-
+    <br>
+    <h3>Add new post: </h3>
     <form th:action="@{/add}" method="post">
         <p>Title: <input type="text" th:name="title"></p>
         <p>Content: <textarea th:name="content"></textarea></p>
          <p> Category:
-             <select th:name="categoryy">
+             <select th:name="category">
                  <option th:each="category: ${categories}" th:text="${category.name}"></option>
              </select>
          </p>
+        <input type="submit">
+    </form>
+    <br>
+    <br>
+    <h4>Add new category: </h4>
+    <form th:action="@{/addCategory}" method="post">
+        <p>Name: <input type="text" th:name="name"></p>
         <input type="submit">
     </form>
 </body>
