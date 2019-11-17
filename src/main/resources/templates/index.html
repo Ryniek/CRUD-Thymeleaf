@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HomePage</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Time</th>
+            <th>Tags</th>
+        </tr>
+        <tr th:each="post : ${postsList}">
+            <td th:text="${post.getId()}"></td>
+            <td th:text="${post.getTitle()}"></td>
+            <td th:text="${post.getContent()}"></td>
+            <td th:text="${post.getTimeOfPost()}"></td>
+            <td th:text="${post.getTags()}"></td>
+        </tr>
+    </table>
+
+    <form th:action="@{/add}" method="post">
+        <p>Title: <input type="text" th:name="title"></p>
+        <p>Content: <input type="text" th:name="content"></p>
+        <p>Tags: <input type="text" th:name="tags"></p>
+        <input type="submit">
+    </form>
+</body>
+</html>
