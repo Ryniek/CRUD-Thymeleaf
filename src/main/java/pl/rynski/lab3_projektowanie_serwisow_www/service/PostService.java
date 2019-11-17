@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import pl.rynski.lab3_projektowanie_serwisow_www.model.BlogPost;
 import pl.rynski.lab3_projektowanie_serwisow_www.repository.BlogRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +27,10 @@ public class PostService {
         return blogRepository.findAll(Sort.by(Sort.Direction.DESC, "timeOfPost"));
     }
 
+    public BlogPost getPost(Long id) {
+        return blogRepository.findById(id).get();
+    }
+
     public boolean addPost(BlogPost blogPost) {
         BlogPost add = blogRepository.save(blogPost);
         if(add != null) {
@@ -33,6 +38,19 @@ public class PostService {
         } else {
             return false;
         }
+    }
+
+    public void updatePost(Long id, BlogPost update) {
+        BlogPost blogPost = blogRepository.findById(id).get();
+        if(!update.getTitle().isEmpty())
+            blogPost.setTitle(update.getTitle());
+        if(!update.getContent().isEmpty())
+            blogPost.setContent(update.getContent());
+        if(update.getCategory() != null) {
+            blogPost.setCategory(update.getCategory());
+        }
+        blogPost.setTimeOfPost(LocalDateTime.now());
+        addPost(blogPost);
     }
 
     public boolean removePost(Long id) {

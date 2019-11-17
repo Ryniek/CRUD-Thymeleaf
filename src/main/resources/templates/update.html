@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update page</title>
+</head>
+<body>
+    <form th:action="@{/updatePost/{id}(id=${postToUpdate.getId()})}" method="post">
+        <p>Change title: <input type="text" th:name="title" th:value="${postToUpdate.getTitle()}"></p>
+        <p>Change content: <textarea th:name="content" th:text="${postToUpdate.getContent()}"></textarea></p>
+        <p> Change category:
+            <select th:name="category">
+                <option th:each="category: ${categories}" th:text="${category.name}"></option>
+            </select>
+        </p>
+        <input type="submit">
+    </form>
+    <a th:href="@{/}">Back to main page</a>
+</body>
+</html>

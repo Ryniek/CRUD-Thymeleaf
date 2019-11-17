@@ -44,4 +44,12 @@ public class CategoryOfPost {
     public void setPosts(List<BlogPost> posts) {
         this.posts = posts;
     }
+
+    @Override
+    public String toString() {
+        return "CategoryOfPost{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

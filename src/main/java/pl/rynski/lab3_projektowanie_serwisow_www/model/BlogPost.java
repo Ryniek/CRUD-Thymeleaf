@@ -81,6 +81,7 @@ public class BlogPost {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", timeOfPost=" + timeOfPost +
+                ", category=" + category +
                 '}';
     }
 }

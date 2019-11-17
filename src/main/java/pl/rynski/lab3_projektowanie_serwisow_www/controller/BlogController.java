@@ -9,6 +9,8 @@ import pl.rynski.lab3_projektowanie_serwisow_www.model.CategoryOfPost;
 import pl.rynski.lab3_projektowanie_serwisow_www.service.CategoryService;
 import pl.rynski.lab3_projektowanie_serwisow_www.service.PostService;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/")
 public class BlogController {
@@ -34,6 +36,7 @@ public class BlogController {
                           @RequestParam String content,
                           @RequestParam String category) {
         postService.addPost(new BlogPost(title, content, categoryService.getCategoryByName(category)));
+        System.out.println(postService.getPost(1L));
         return "redirect:/";
     }
 
@@ -43,9 +46,26 @@ public class BlogController {
         return "redirect:/";
     }
 
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+        model.addAttribute("postToUpdate", postService.getPost(id));
+        model.addAttribute("categories", categoryService.getCategories());
+        return "update";
+    }
+
+    @PostMapping("/updatePost/{id}")
+    public String updatePost(@RequestParam(required = false) String title,
+                             @RequestParam(required = false) String content,
+                             @RequestParam(required = false) String category,
+                             @PathVariable Long id) {
+        BlogPost update = new BlogPost(title, content, categoryService.getCategoryByName(category));
+        postService.updatePost(id, update);
+        return "redirect:/";
+    }
+
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        postService.removePost(id+1);
+    public String deletePost(@PathVariable Long id) {
+        postService.removePost(id);
         return "redirect:/";
     }
 }
