@@ -10,16 +10,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BlogService {
+public class PostService {
 
     private BlogRepository blogRepository;
 
     @Autowired
-    public BlogService(BlogRepository blogRepository) {
+    public PostService(BlogRepository blogRepository) {
         this.blogRepository = blogRepository;
-        blogRepository.save(new BlogPost("Tytul", "Opis", "Tag1, Tag2, Tag3"));
-        blogRepository.save(new BlogPost("Tytul22", "Opis222", "Tag1111, Tag2222, Tag3333"));
-        blogRepository.save(new BlogPost("Tytul3333", "Opis3333", "Tag123, Tag2345, Tag3234"));
+        blogRepository.save(new BlogPost("Tytul", "Opis"));
+        blogRepository.save(new BlogPost("Tytul22", "Opis222"));
+        blogRepository.save(new BlogPost("Tytul3333", "Opis3333"));
     }
 
     public List<BlogPost> getPosts() {

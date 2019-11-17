@@ -16,7 +16,6 @@
             <td th:text="${post.getTitle()}"></td>
             <td th:text="${post.getContent()}"></td>
             <td th:text="${post.getTimeOfPost()}"></td>
-            <td th:text="${post.getTags()}"></td>
             <td><a th:href="@{/delete/{id}(id=${stat.index})}">Delete post</a></td>
             <td>Update</td>
         </tr>
@@ -25,7 +24,11 @@
     <form th:action="@{/add}" method="post">
         <p>Title: <input type="text" th:name="title"></p>
         <p>Content: <textarea th:name="content"></textarea></p>
-        <p>Tags: <input type="text" th:name="tags"></p>
+         <p> Category:
+             <select th:name="categoryy">
+                 <option th:each="category: ${categories}" th:text="${category.name}"></option>
+             </select>
+         </p>
         <input type="submit">
     </form>
 </body>

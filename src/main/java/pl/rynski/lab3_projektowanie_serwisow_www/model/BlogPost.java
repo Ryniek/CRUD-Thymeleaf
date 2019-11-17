@@ -13,17 +13,17 @@ public class BlogPost {
     private String title;
     private String content;
     @Column(name = "time_post")
-    private String tags;
     private LocalDateTime timeOfPost;
-    private PostCategory category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryOfPost category;
 
     public BlogPost() {
     }
 
-    public BlogPost(String title, String content, String tags) {
+    public BlogPost(String title, String content) {
         this.title = title;
         this.content = content;
-        this.tags = tags;
         timeOfPost = LocalDateTime.now();
     }
 
@@ -59,14 +59,6 @@ public class BlogPost {
         this.timeOfPost = timeOfPost;
     }
 
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
     @Override
     public String toString() {
         return "BlogPost{" +
@@ -74,7 +66,6 @@ public class BlogPost {
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", timeOfPost=" + timeOfPost +
-                ", tags='" + tags + '\'' +
                 '}';
     }
 }
