@@ -36,7 +36,6 @@ public class BlogController {
                           @RequestParam String content,
                           @RequestParam String category) {
         postService.addPost(new BlogPost(title, content, categoryService.getCategoryByName(category)));
-        System.out.println(postService.getPost(1L));
         return "redirect:/";
     }
 

@@ -2,6 +2,7 @@ package pl.rynski.lab3_projektowanie_serwisow_www.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "Blog_post")
@@ -58,8 +59,9 @@ public class BlogPost {
         this.content = content;
     }
 
-    public LocalDateTime getTimeOfPost() {
-        return timeOfPost;
+    public String getTimeOfPost() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return timeOfPost.format(formatter);
     }
 
     public void setTimeOfPost(LocalDateTime timeOfPost) {
