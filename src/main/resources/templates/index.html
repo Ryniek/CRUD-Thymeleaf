@@ -8,44 +8,53 @@
     <link type="text/css" href="../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet">
 </head>
 <body>
-    <h2>All posts</h2>
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Time</th>
-            <th>Category</th>
-            <th>Delete post</th>
-            <th>Update post</th>
-        </tr>
-        <tr th:each="post: ${postsList}">
-            <td th:text="${post.getTitle()}"></td>
-            <td th:text="${post.getContent()}"></td>
-            <td th:text="${post.getTimeOfPost()}"></td>
-            <td th:text="${post.category?.name}"></td>
-            <td><a th:href="@{/delete/{id}(id=${post.getId()})}">Delete post</a></td>
-            <td><a th:href="@{/update/{id}(id=${post.getId()})}">Update</a></td>
-        </tr>
-    </table>
-    <br>
-    <h3>Add new post: </h3>
-    <form th:action="@{/add}" method="post">
-        <p>Title: <input type="text" th:name="title"></p>
-        <p>Content: <textarea th:name="content"></textarea></p>
-         <p> Category:
-             <select th:name="category">
-                 <option th:each="category: ${categories}" th:text="${category.name}"></option>
-             </select>
-         </p>
-        <input type="submit">
-    </form>
-    <br>
-    <br>
-    <h4>Add new category: </h4>
-    <form th:action="@{/addCategory}" method="post">
-        <p>Name: <input type="text" th:name="name"></p>
-        <input type="submit">
-    </form>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>All posts</h2>
+                </div>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Time</th>
+                    <th>Category</th>
+                    <th>Delete post</th>
+                    <th>Update post</th>
+                </tr>
+                <tr th:each="post: ${postsList}">
+                    <td th:text="${post.getTitle()}"></td>
+                    <td th:text="${post.getContent()}"></td>
+                    <td th:text="${post.getTimeOfPost()}"></td>
+                    <td th:text="${post.category?.name}"></td>
+                    <td><a th:href="@{/delete/{id}(id=${post.getId()})}">Delete post</a></td>
+                    <td><a th:href="@{/update/{id}(id=${post.getId()})}">Update</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3>Add new post: </h3>
+        <form th:action="@{/add}" method="post">
+            <p>Title: <input type="text" th:name="title"></p>
+            <p>Content: <textarea th:name="content"></textarea></p>
+            <p> Category:
+                <select th:name="category">
+                    <option th:each="category: ${categories}" th:text="${category.name}"></option>
+                </select>
+            </p>
+            <input type="submit">
+        </form>
+        <br>
+        <br>
+        <h4>Add new category: </h4>
+        <form th:action="@{/addCategory}" method="post">
+            <p>Name: <input type="text" th:name="name"></p>
+            <input type="submit">
+        </form>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../static/scripts/script.js" th:src="@{/scripts/script.js/}"></script>
 </body>
