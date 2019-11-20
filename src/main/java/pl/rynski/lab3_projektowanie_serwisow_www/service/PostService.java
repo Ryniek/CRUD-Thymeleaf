@@ -49,7 +49,7 @@ public class PostService {
         if(update.getCategory() != null) {
             blogPost.setCategory(update.getCategory());
         }
-        blogPost.setTimeOfPost(LocalDateTime.now());
+        //blogPost.setTimeOfPost(LocalDateTime.now());
         addPost(blogPost);
     }
 

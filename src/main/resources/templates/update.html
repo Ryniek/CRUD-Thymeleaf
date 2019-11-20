@@ -7,16 +7,44 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
 </head>
 <body>
-    <form th:action="@{/updatePost/{id}(id=${postToUpdate.getId()})}" method="post">
-        <p>Change title: <input type="text" th:name="title" th:value="${postToUpdate.getTitle()}"></p>
-        <p>Change content: <textarea th:name="content" th:text="${postToUpdate.getContent()}"></textarea></p>
-        <p> Change category:
-            <select th:name="category">
-                <option th:each="category: ${categories}" th:text="${category.name}"></option>
-            </select>
-        </p>
-        <input type="submit">
-    </form>
-    <a th:href="@{/}">Back to main page</a>
+    <div class="container" style="background-color: #f5f5ef">
+        <div class="row">
+            <div class="col-8">
+                <form th:action="@{/updatePost/{id}(id=${postToUpdate.getId()})}"  class="form-horizontal" method="post" style=" margin: 15px; background-color: #adaca8; padding: 10px; border-radius: 25px">
+                    <fieldset>
+                        <legend>Add post</legend>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textinput">Title</label>
+                            <div class="col-md-4">
+                                <input id="textinput" th:name="title" th:value="${postToUpdate.getTitle()}" type="text" placeholder="title" class="form-control input-md">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="textarea">Content</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="textarea" th:name="content" th:text="${postToUpdate.getContent()}"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Select Category</label>
+                            <div class="col-md-4">
+                                <select id="selectbasic"  th:name="category" class="form-control">
+                                    <option th:each="category: ${categories}" th:text="${category.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton"></label>
+                            <div class="col-md-4">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-dark">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <br>
+        <a style="font-size: 25px" th:href="@{/}">Back to main page</a>
+    </div>
 </body>
 </html>

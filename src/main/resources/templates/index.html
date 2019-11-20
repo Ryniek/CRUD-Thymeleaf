@@ -15,6 +15,62 @@
                 </div>
             </div>
         </div>
+        <div class="container" style="background-color: #f5f5ef">
+            <div class="row">
+                <div class="col-8">
+                    <form th:action="@{/add}"  class="form-horizontal" method="post" style=" margin: 15px; background-color: #adaca8; padding: 10px; border-radius: 25px">
+                        <fieldset>
+                            <legend style="text-align: center">Add post</legend>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Title</label>
+                                <div class="col-md-4">
+                                    <input id="textinput" th:name="title" type="text" placeholder="title" class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textarea">Content</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" id="textarea" th:name="content"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="selectbasic">Select Category</label>
+                                <div class="col-md-4">
+                                    <select id="selectbasic"  th:name="category" class="form-control">
+                                        <option th:each="category: ${categories}" th:text="${category.name}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton"></label>
+                                <div class="col-md-4">
+                                    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-4">
+                    <form th:action="@{/addCategory}" method="post" class="form-horizontal" style="margin: 15px; background-color: #adaca8; padding: 10px; border-radius: 25px">
+                        <fieldset>
+                            <legend style="text-align: center">Add new category</legend>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Name</label>
+                                <div class="col-md-5">
+                                    <input id="textinput1" th:name="name" type="text" class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton"></label>
+                                <div class="col-md-4">
+                                    <button id="singlebutton1" name="singlebutton" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
         <div class="container bg-light">
             <div th:each="post: ${postsList}" class="row border border-dark">
                 <div class="col-12 border-bottom border-dark align-self-center">
@@ -27,7 +83,7 @@
                     <p class="bg-info text-white" style="font-size: 18px" th:text="'Category: ' + ${post.category?.name}">></p>
                 </div>
                 <div class="col-5 offset-3" style="padding-top: 5px">
-                    <p class="bg-info text-white" style="font-size: 18px" th:text="'Time of adding post: ' + ${post.getTimeOfPost()}"></p>
+                    <p class="bg-info text-white" style="font-size: 18px" th:text="'Post adding time: ' + ${post.getTimeOfPost()}"></p>
                 </div>
                 <div class="col-12" style="padding-bottom: 10px">
                     <a class="btn btn-secondary" th:href="@{/update/{id}(id=${post.getId()})}">Update</a>
@@ -35,24 +91,6 @@
                 </div>
             </div>
         </div>
-        <h3>Add new post: </h3>
-        <form th:action="@{/add}" method="post">
-            <p>Title: <input type="text" th:name="title"></p>
-            <p>Content: <textarea th:name="content"></textarea></p>
-            <p> Category:
-                <select th:name="category">
-                    <option th:each="category: ${categories}" th:text="${category.name}"></option>
-                </select>
-            </p>
-            <input type="submit">
-        </form>
-        <br>
-        <br>
-        <h4>Add new category: </h4>
-        <form th:action="@{/addCategory}" method="post">
-            <p>Name: <input type="text" th:name="name"></p>
-            <input type="submit">
-        </form>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../static/scripts/script.js" th:src="@{/scripts/script.js/}"></script>
